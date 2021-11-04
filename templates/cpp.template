@@ -1,0 +1,19 @@
+#include "{{FILE}}.hpp"
+
+{{FILE}}::{{FILE}}() {
+}
+
+{{FILE}}::{{FILE}}(const {{FILE}}& src) {
+	*this = src;
+}
+
+{{FILE}}& {{FILE}}::operator=(const {{FILE}}& src) {
+	if (this != &src) {
+		{{CURSOR}}/* make *this and src equal */
+	}
+	return (*this);
+}
+
+{{FILE}}::~{{FILE}}() {
+}
+

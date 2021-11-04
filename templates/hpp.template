@@ -1,0 +1,16 @@
+#ifndef {{MACRO_GUARD}}
+#define {{MACRO_GUARD}}
+
+class {{FILE}} {
+
+    private:
+        /* private data */
+
+    public:
+        {{FILE}}();
+		{{FILE}}(const {{FILE}}&);
+		{{FILE}}& operator=(const {{FILE}}&);
+        virtual ~{{FILE}}();
+};
+
+#endif
