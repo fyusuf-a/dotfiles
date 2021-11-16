@@ -42,8 +42,6 @@ if has("wildmenu")
 endif
 "}}}
 "Plugins {{{
-	"Automatic installation off vimplug
-	
 	call plug#begin('~/.vim/plugged')
 	"General
 	Plug 'vim-airline/vim-airline'
@@ -285,8 +283,9 @@ endif
 			endfunction
 		"}}}
 		"Compile document. First executes xelatex, then removes auxilliary files if g:tex_rm is true {{{
+		"-shell-escape is for package minted
 			function! Compile()
-				execute "w | !xelatex \"%\""
+				execute "w | !xelatex -shell-escape \"%\""
 				if g:tex_rm
 					call Delete()
 				endif
@@ -294,9 +293,9 @@ endif
 
 			function! CompileBib()
 				let root = expand("%:r")
-				execute "w | silent !xelatex \"%\""
+				execute "w | silent !xelatex -shell-escape \"%\""
 				execute "silent !biber \"".root."\""
-				execute "!xelatex \"%\""
+				execute "!xelatex -shell-escape \"%\""
 				if g:tex_rm
 					call Delete()
 				endif
