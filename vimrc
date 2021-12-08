@@ -28,6 +28,7 @@ set clipboard=unnamedplus
 "show special characters
 set listchars=eol:$,space:_,tab:\\t,trail:~,extends:>,precedes:<,nbsp:~
 set nolist
+set colorcolumn=80
 "saving and loading folds from filenames
 "autocmd BufWinLeave * mkview
 "autocmd BufWinEnter * silent loadview
@@ -48,6 +49,8 @@ endif
 	Plug 'scrooloose/nerdtree'
 	Plug 'tibabit/vim-templates'
 	Plug 'scrooloose/nerdcommenter'
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-telescope/telescope.nvim'
 	"Theme
 	Plug 'altercation/vim-colors-solarized'
 	"IDE
@@ -73,7 +76,22 @@ endif
 	"Asm
 	Plug 'vim-scripts/asmx86'
 	call plug#end()
+	"Solidity
+	Plug 'TovarishFin/vim-solidity'
 
+"Templates {{{
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Using Lua functions
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+"}}}
 "Templates {{{
 	" TextEdit might fail if hidden is not set.
 	let g:tmpl_search_paths = ['~/dotfiles/templates']
@@ -447,8 +465,10 @@ endif
 	"C {{{
 	augroup c
 		autocmd!
+		autocmd BufRead,BufNewFile *.h set filetype=c
 		autocmd filetype cpp setlocal nosmarttab tabstop=4 softtabstop=0 shiftwidth=4 tw=80
 		autocmd filetype c nnoremap <localleader>q :!gcc % && ./a.out<cr>
+		autocmd BufNewFile,BufRead *.tpp set filetype=cpp
 	augroup end
 	"Haskell{{{
 	augroup haskell
