@@ -109,7 +109,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 
 if [ $SHELL = "/bin/bash" ]
 then
-	PATH=$PATH:/usr/local/bin:/usr/local/sbin:/usr/sbin:/sbin:$HOME/android-studio/bin:/opt/ghc/bin:/opt/cabal/bin/:$HOME/.cabal/bin:$HOME/.cabal/bin:$HOME/.local/bin
+	PATH=$PATH:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/ghc/bin:/opt/cabal/bin/:$HOME/.local/bin:$HOME/.cabal/bin:$HOME/android-studio/bin
 	alias vim='nvim'
 else
 	PATH=$HOME/.brew/bin:$PATH
@@ -123,4 +123,5 @@ export USER='fyusuf-a'
 export MAIL='fyusuf-a@student.42.fr'
 alias mutt='neomutt'
 alias valgrind='valgrind --leak-check=full --show-reachable=yes'
-alias 42docker='docker run --name 42docker --rm -it -v $PWD:/root/workdir -v $HOME/.gitconfig:/root/.gitconfig -v $HOME/.ssh:/root/.ssh 42docker'
+alias 42docker='docker run --rm -it -v $PWD:/root/workdir -v $HOME/.gitconfig:/root/.gitconfig -v $HOME/.ssh:/root/.ssh -v $HOME/.vimrc:/root/.vimrc -v $HOME/dotfiles/plugin.vim:/root/plugin.vim 42docker'
+alias nile='docker run --rm -v "$PWD":"$PWD" -w "$PWD" lucaslvy/nile'
