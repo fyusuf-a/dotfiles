@@ -68,7 +68,7 @@ endif
 	" TextEdit might fail if hidden is not set.
 	let g:tmpl_search_paths = ['~/dotfiles/templates']
 "}}}
-""Coc {{{
+"Coc {{{
 "	" TextEdit might fail if hidden is not set.
 "	set hidden
 "
@@ -474,7 +474,8 @@ endif
 	"}}}
 	"Javascript{{{
 	augroup javascript
-		autocmd filetype javascript nnoremap <buffer> <localleader>a :w<cr>:execute "!nodejs -use-strict ".expand("%.t")<cr>
+		autocmd filetype javascript,typescript nnoremap <buffer> <localleader>a :w<cr>:execute "!nodejs -use-strict ".expand("%.t")<cr>
+		autocmd filetype javascript,typescript setlocal smarttab softtabstop=2 shiftwidth=2 expandtab tw=80
 	augroup end
 	"}}}
 "}}}
